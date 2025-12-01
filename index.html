@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellQ | The Open Source ASPM</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            400: '#34d399', 
+                            500: '#10b981', 
+                            600: '#059669',
+                            950: '#022c22', 
+                        }
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; }
+        
+        /* Cyberpunk Grid Background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #27272a 1px, transparent 1px),
+                              linear-gradient(to bottom, #27272a 1px, transparent 1px);
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+        
+        /* Glass Effect */
+        .glass-panel {
+            background: rgba(9, 9, 11, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="text-white antialiased overflow-x-hidden selection:bg-brand-500/30 selection:text-brand-400">
+
+    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-black/50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            
+            <div class="flex items-center gap-2 cursor-pointer group">
+                <span class="font-bold tracking-tight text-xl text-white group-hover:text-zinc-200 transition-colors font-mono">WellQ</span>
+                <span class="bg-zinc-800 text-zinc-400 text-[10px] font-mono px-2 py-0.5 rounded border border-zinc-700 uppercase tracking-widest group-hover:text-white transition-colors">ASPM</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#why-wellq" class="hover:text-white transition-colors">Why WellQ?</a>
+                <a href="#integrations" class="hover:text-white transition-colors">Integrations</a>
+                <a href="https://github.com" target="_blank" class="hover:text-white transition-colors flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                    GitHub
+                </a>
+            </div>
+
+            <a href="#" class="bg-white text-black text-xs font-bold px-5 py-2.5 rounded-full hover:bg-zinc-200 transition-colors uppercase tracking-wider">
+                Deploy v1.2
+            </a>
+        </div>
+    </nav>
+
+    <div class="relative pt-32 pb-10 sm:pt-48 sm:pb-24 overflow-hidden">
+        <div class="absolute inset-0 bg-grid -z-10 opacity-20"></div>
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-950/60 rounded-full blur-[120px] -z-10 animate-blob"></div>
+
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            
+            <div class="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/80 backdrop-blur px-4 py-1.5 text-xs font-medium text-zinc-400 mb-8 cursor-pointer hover:border-brand-500/50 hover:text-white transition-all">
+                <span class="flex h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+                Open Source & EU CRA Compliant
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight text-white">
+                Application Security for the <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-700">High-Velocity Era.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Ingest scans from any tool. Deduplicate noise instantly. 
+                Prioritize risk with EPSS & KEV intelligence. 
+                <span class="text-white">Finally, an ASPM that doesn't slow you down.</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="bg-white text-black font-bold px-8 py-3.5 rounded-lg hover:bg-zinc-200 transition-all flex items-center gap-2 transform hover:scale-105 active:scale-95 duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    Start Ingesting
+                </button>
+                <button class="px-8 py-3.5 rounded-lg text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700 transition-all flex items-center gap-2 bg-zinc-900/50">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                    Star on GitHub
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 -mt-4 mb-20 z-20">
+        <div class="glass-panel border border-zinc-800 rounded-xl shadow-2xl overflow-hidden animate-float">
+            <div class="bg-zinc-900/80 border-b border-zinc-800 px-4 py-3 flex items-center justify-between">
+                <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                </div>
+                <div class="text-[10px] font-mono text-zinc-500">wellq-dashboard / payment-service / v1.2.0</div>
+                <div class="w-10"></div>
+            </div>
+            <div class="p-6 grid grid-cols-12 gap-6 bg-black/60">
+                <div class="hidden md:block col-span-2 space-y-1">
+                    <div class="h-8 flex items-center px-3 bg-zinc-800/50 rounded text-xs text-white font-medium mb-4">Dashboard</div>
+                    <div class="h-8 flex items-center px-3 text-xs text-zinc-500 hover:text-white cursor-pointer">Workspaces</div>
+                    <div class="h-8 flex items-center px-3 bg-brand-500/10 text-brand-500 rounded text-xs font-bold cursor-pointer border-l-2 border-brand-500">Inventory</div>
+                    <div class="h-8 flex items-center px-3 text-xs text-zinc-500 hover:text-white cursor-pointer">Scans</div>
+                    <div class="h-8 flex items-center px-3 text-xs text-zinc-500 hover:text-white cursor-pointer">Settings</div>
+                </div>
+                <div class="col-span-12 md:col-span-10">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Payment-Gateway-API</h2>
+                            <div class="flex gap-3 text-xs mt-1 text-zinc-500 font-mono">
+                                <span class="bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">v1.2.0</span>
+                                <span>Updated 12m ago</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="bg-zinc-800 text-white text-xs px-3 py-1.5 rounded border border-zinc-700 hover:bg-zinc-700">Export SBOM</button>
+                            <button class="bg-white text-black text-xs font-bold px-3 py-1.5 rounded hover:bg-zinc-200">+ New Scan</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-4 mb-6">
+                        <div class="p-4 bg-zinc-900/30 border border-zinc-800 rounded-lg">
+                            <div class="text-[10px] text-zinc-500 uppercase tracking-widest">Security Score</div>
+                            <div class="text-2xl font-bold text-white mt-1">A- <span class="text-xs font-normal text-emerald-500">+2%</span></div>
+                        </div>
+                        <div class="p-4 bg-red-900/10 border border-red-500/20 rounded-lg">
+                            <div class="text-[10px] text-red-400 uppercase tracking-widest">Critical Vulns</div>
+                            <div class="text-2xl font-bold text-white mt-1">3 <span class="text-xs font-normal text-zinc-500">Active</span></div>
+                        </div>
+                        <div class="p-4 bg-zinc-900/30 border border-zinc-800 rounded-lg">
+                            <div class="text-[10px] text-zinc-500 uppercase tracking-widest">MTTR (Avg)</div>
+                            <div class="text-2xl font-bold text-white mt-1">4.2h <span class="text-xs font-normal text-emerald-500">-12%</span></div>
+                        </div>
+                        <div class="p-4 bg-zinc-900/30 border border-zinc-800 rounded-lg">
+                            <div class="text-[10px] text-zinc-500 uppercase tracking-widest">Components</div>
+                            <div class="text-2xl font-bold text-white mt-1">142 <span class="text-xs font-normal text-zinc-500">Libs</span></div>
+                        </div>
+                    </div>
+                    <div class="border border-zinc-800 rounded-lg overflow-hidden">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-zinc-900/50 text-zinc-500 font-mono uppercase">
+                                <tr>
+                                    <th class="px-4 py-3">Severity</th>
+                                    <th class="px-4 py-3">CVE ID</th>
+                                    <th class="px-4 py-3">Package</th>
+                                    <th class="px-4 py-3">EPSS Score</th>
+                                    <th class="px-4 py-3 text-right">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-800 bg-zinc-900/20">
+                                <tr>
+                                    <td class="px-4 py-3"><span class="bg-red-500/10 text-red-500 px-1.5 py-0.5 rounded border border-red-500/20 font-bold">CRITICAL</span></td>
+                                    <td class="px-4 py-3 text-white font-mono">CVE-2024-2190</td>
+                                    <td class="px-4 py-3 text-zinc-300">openssl</td>
+                                    <td class="px-4 py-3"><div class="w-16 h-1 bg-zinc-800 rounded"><div class="h-full bg-red-500 w-[92%]"></div></div></td>
+                                    <td class="px-4 py-3 text-right text-emerald-500">Open</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3"><span class="bg-orange-500/10 text-orange-500 px-1.5 py-0.5 rounded border border-orange-500/20 font-bold">HIGH</span></td>
+                                    <td class="px-4 py-3 text-white font-mono">CVE-2023-4401</td>
+                                    <td class="px-4 py-3 text-zinc-300">django</td>
+                                    <td class="px-4 py-3"><div class="w-16 h-1 bg-zinc-800 rounded"><div class="h-full bg-orange-500 w-[45%]"></div></div></td>
+                                    <td class="px-4 py-3 text-right text-emerald-500">Open</td>
+                                </tr>
+                                <tr class="opacity-50">
+                                    <td class="px-4 py-3"><span class="bg-blue-500/10 text-blue-500 px-1.5 py-0.5 rounded border border-blue-500/20 font-bold">LOW</span></td>
+                                    <td class="px-4 py-3 text-white font-mono">CVE-2022-1209</td>
+                                    <td class="px-4 py-3 text-zinc-300">requests</td>
+                                    <td class="px-4 py-3"><div class="w-16 h-1 bg-zinc-800 rounded"><div class="h-full bg-blue-500 w-[5%]"></div></div></td>
+                                    <td class="px-4 py-3 text-right"><span class="border border-emerald-500/30 text-emerald-500 px-1.5 py-0.5 rounded">Fixed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="py-24 bg-zinc-950/50 border-t border-zinc-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center">Stop paying for bloatware.</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 rounded-xl border border-zinc-800 bg-zinc-900/20 opacity-60 hover:opacity-100 transition-opacity">
+                    <h3 class="text-lg font-bold text-zinc-400 mb-2">Enterprise ASPM "A"</h3>
+                    <div class="text-4xl font-bold text-zinc-600 mb-4">$50k<span class="text-sm font-normal text-zinc-500">/yr</span></div>
+                    <ul class="space-y-2 text-sm text-zinc-500">
+                        <li class="flex items-center gap-2"><span class="text-red-500">✕</span> Requires 3-month onboarding</li>
+                        <li class="flex items-center gap-2"><span class="text-red-500">✕</span> Sales-gated pricing</li>
+                        <li class="flex items-center gap-2"><span class="text-red-500">✕</span> Slow UI (Legacy tech)</li>
+                    </ul>
+                </div>
+                <div class="p-8 rounded-2xl border border-brand-500/30 bg-gradient-to-b from-brand-950/20 to-black relative transform scale-105 shadow-2xl shadow-brand-900/20">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Developer's Choice</div>
+                    <h3 class="text-xl font-bold text-white mb-2">WellQ ASPM</h3>
+                    <div class="text-4xl font-bold text-white mb-4">Open Source</div>
+                    <ul class="space-y-3 text-sm text-zinc-300">
+                        <li class="flex items-center gap-2"><span class="text-brand-500">✓</span> 5-minute Docker deploy</li>
+                        <li class="flex items-center gap-2"><span class="text-brand-500">✓</span> Modern API-first design</li>
+                        <li class="flex items-center gap-2"><span class="text-brand-500">✓</span> EU CRA Compliant</li>
+                        <li class="flex items-center gap-2"><span class="text-brand-500">✓</span> No per-user seat limits</li>
+                    </ul>
+                </div>
+                <div class="p-6 rounded-xl border border-zinc-800 bg-zinc-900/20 opacity-60 hover:opacity-100 transition-opacity">
+                    <h3 class="text-lg font-bold text-zinc-400 mb-2">Legacy Tool "B"</h3>
+                    <div class="text-4xl font-bold text-zinc-600 mb-4">$35k<span class="text-sm font-normal text-zinc-500">/yr</span></div>
+                    <ul class="space-y-2 text-sm text-zinc-500">
+                        <li class="flex items-center gap-2"><span class="text-red-500">✕</span> No real API support</li>
+                        <li class="flex items-center gap-2"><span class="text-red-500">✕</span> Clunky "Re-import" logic</li>
+                        <li class="flex items-center gap-2"><span class="text-red-500">✕</span> Zero EPSS intelligence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="why-wellq" class="py-24 border-t border-zinc-900 relative">
+        <div class="absolute inset-0 bg-grid -z-10 opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <div class="h-12 w-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6 text-blue-500 border border-blue-500/20">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Why Developers?</h3>
+                    <p class="text-zinc-400 leading-relaxed text-sm">
+                        Stop getting blocked by "False Positive" gates. WellQ runs in your pipeline, auto-closes fixed issues instantly, and serves it all in a <span class="text-white">clean, developer-friendly UI</span>. No PDF reports, just JSON.
+                    </p>
+                </div>
+                <div>
+                    <div class="h-12 w-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-6 text-red-500 border border-red-500/20">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Why Security Teams?</h3>
+                    <p class="text-zinc-400 leading-relaxed text-sm">Get a "Single Pane of Glass" for Trivy, Grype, and Sonar. Track remediation velocity (MTTR) and enforce policy without slowing down the build. <span class="text-white">Audit-ready</span> in seconds.</p>
+                </div>
+                <div>
+                    <div class="h-12 w-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6 text-purple-500 border border-purple-500/20">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Why Business?</h3>
+                    <p class="text-zinc-400 leading-relaxed text-sm"><span class="text-white">EU CRA Compliance</span> out of the box. Generate SBOMs automatically for every release. Prove security posture to customers and auditors without buying expensive enterprise shelfware.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-24 border-t border-zinc-900 bg-zinc-950/50 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-3xl font-bold mb-6">Ready to upgrade your posture?</h2>
+            <div class="flex justify-center gap-4">
+                <a href="#" class="bg-brand-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-brand-500 transition-colors">
+                    Get Started Free
+                </a>
+                <a href="https://github.com" target="_blank" class="px-8 py-3 rounded-lg border border-zinc-700 hover:bg-zinc-900 transition-colors">
+                    View on GitHub
+                </a>
+            </div>
+            <p class="mt-8 text-xs text-zinc-600 font-mono">WellQ Project. MIT License. 2024.</p>
+        </div>
+    </div>
+
+</body>
+</html>
